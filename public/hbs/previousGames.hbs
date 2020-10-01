@@ -1,0 +1,44 @@
+<div id="mainTeam" class="col-12 container-fluid row d-flex flex-row justify-content-center">
+  {{#each previousGames}}
+  <div class="col-4 d-flex flex-column align-items-center">
+    <div id="previousGameInfo" class="d-flex flex-column align-items-center">
+      <div>
+        <img width="30" height="30" src="{{league.logo}}">
+      </div>
+      <div>
+        {{homeTeam.team_name}} vs {{awayTeam.team_name}}. {{league.name}}
+      </div>
+      <div>
+        {{event_date}}
+      </div>
+      <div>
+        {{venue}}
+      </div>
+    </div>
+    <div id="playingTeams" class="col-11 d-flex flex-column">
+      <div id="playingTeamsLogos">
+        <img width="50" height="50" src="{{homeTeam.logo}}">
+        <img width="50" height="50" src="{{awayTeam.logo}}">
+      </div>
+      <div class="d-flex flex-row">
+        <div class="col-11">
+          <div class="h3">
+            {{homeTeam.team_name}}
+          </div>
+          <div class="h3">
+            {{awayTeam.team_name}}
+          </div>
+        </div>
+        <div class="col-1">
+          <div class="h3 font-weight-bold">
+            {{goalsHomeTeam}}
+          </div>
+          <div class="h3 font-weight-bold">
+            {{goalsAwayTeam}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+</div>

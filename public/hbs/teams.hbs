@@ -1,0 +1,9 @@
+<div data-league-id="{{leagueId}}">Choose team</div>
+{{#each teamsArr}}
+<form>
+  <button id="{{team_id}}" type="submit" name="teamForm" value="{{name}}">
+    <img src="{{logo}}" width="30" height="30" style="vertical-align: middle">
+    {{name}}
+  </button>
+</form>
+{{/each}}
