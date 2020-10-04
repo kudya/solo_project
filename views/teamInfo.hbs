@@ -1,4 +1,14 @@
-<div id="mainTeam" class="col-12 container-fluid row d-flex flex-column align-items-center">
+<div class="bg-secondary text-white" id="homeRef">
+  <a class="text-white" href="/">Choose another team</a>
+</div>
+<div class="bg-secondary text-white" id="standingsRef">
+  <a class="text-white" href="/team/standings/{{leagueId}}/{{teamId}}">Standings</a>
+</div>
+<div class="bg-secondary text-white" id="squadRef">
+  <a class="text-white" href="/team/squad/{{leagueId}}/{{teamId}}">Squad</a>
+</div>
+
+<div style="margin-top: 30px" id="mainTeam" class="col-12 container-fluid row d-flex flex-column align-items-center">
   <div id="nextGameInfo" class="d-flex flex-column align-items-center">
     <div>
       <img width="50" height="50" src="{{nextGame.league.logo}}">
@@ -28,15 +38,17 @@
     </div>
     <div id="teamInfoButtons" class="col-4 d-flex flex-column justify-content-end">
       <form>
-        <button data-team-id="{{teamId}}" type="submit" name="teamInfoButtons" value="russia"
+        <button id="previousGame" data-team-id="{{teamId}}" type="submit" name="teamInfoButtons" value="previousGame"
           class="btn btn-primary btn-lg btn-block">Previous
           games</button>
       </form>
       <form>
-        <button class="btn btn-primary btn-lg btn-block">Button</button>
+        <button id="predictions" data-fixture-id="{{nextGame.fixture_id}}" type="submit" name="teamInfoButtons"
+          class="btn btn-primary btn-lg btn-block" value="predictions">Predictions</button>
       </form>
       <form>
-        <button class="btn btn-primary btn-lg btn-block">Button</button>
+        <button id="odds" data-fixture-id="{{nextGame.fixture_id}}" type="submit" name="teamInfoButtons"
+          class="btn btn-primary btn-lg btn-block" value="odds">Odds</button>
       </form>
     </div>
   </div>
@@ -45,41 +57,13 @@
 <p></p>
 <p></p>
 
-<div id="teamInfoContainer">
-
+<div>
+  <div id="teamInfoContainer" style="margin-top: 60px"></div>
+  <div style="margin-top: 60px" id="advice"></div>
+  <div class="col-10" height="400" height="400"><canvas id="myChart" class="h-75"></canvas></div>
 </div>
-<h1>2020/2021 Season</h1>
-<table class="table table-sm">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Teams</th>
-      <th scope="col">Games</th>
-      <th scope="col">W</th>
-      <th scope="col">D</th>
-      <th scope="col">L</th>
-      <th scope="col">GF</th>
-      <th scope="col">GA</th>
-      <th scope="col">GD</th>
-      <th scope="col">Pts</th>
-      <th scope="col">Last 5</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each teamsTable}}
-    <tr>
-      <th scope="row">{{rank}}</th>
-      <td><img width="40" height="40" style="vertical-align: middle" src="{{logo}}"><strong> {{teamName}}</strong></td>
-      <td style="vertical-align: middle">{{all.matchsPlayed}}</td>
-      <td style="vertical-align: middle">{{all.win}}</td>
-      <td style="vertical-align: middle">{{all.draw}}</td>
-      <td style="vertical-align: middle">{{all.lose}}</td>
-      <td style="vertical-align: middle">{{all.goalsFor}}</td>
-      <td style="vertical-align: middle">{{all.goalsAgainst}}</td>
-      <td style="vertical-align: middle">{{goalsDiff}}</td>
-      <td style="vertical-align: middle">{{points}}</td>
-      <td style="vertical-align: middle">{{forme}}</td>
-    </tr>
-    {{/each}}
-  </tbody>
-</table>
+{{!-- </div>
+<div id="teamInfoContainer" style="margin-top: 60px">
+  <div id="advice"></div>
+</div>
+<div class="col-10" height="400" height="400"><canvas id="myChart" class="h-75"></canvas></div> --}}

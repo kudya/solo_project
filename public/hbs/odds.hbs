@@ -1,0 +1,21 @@
+<h1>Match Winner</h1>
+<table class="table table-sm">
+  <thead>
+    <tr>
+      <th scope="col">Bookmaker</th>
+      <th scope="col">Home</th>
+      <th scope="col">Draw</th>
+      <th scope="col">Away</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each topFiveBookmakers}}
+    <tr>
+      <td><strong>{{bookmaker}}</strong></td>
+      <td style="vertical-align: middle">{{home}}</td>
+      <td style="vertical-align: middle">{{draw}}</td>
+      <td style="vertical-align: middle">{{away}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

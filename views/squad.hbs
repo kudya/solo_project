@@ -1,0 +1,35 @@
+<div class="bg-secondary text-white" id="homeRef">
+  <a class="text-white" href="/">Choose another team</a>
+</div>
+<div class="bg-secondary text-white" id="standingsButton">
+  <a class="text-white" href="/team/{{leagueId}}/{{teamId}}">Back to the Next Game</a>
+</div>
+<h1>2020/2021 Squad</h1>
+<table class="table table-sm">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Position</th>
+      <th scope="col">Age</th>
+      <th scope="col">Birth Date</th>
+      <th scope="col">Birth Place</th>
+      <th scope="col">Nationality</th>
+      <th scope="col">Height</th>
+      <th scope="col">Weight</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each squadTable}}
+    <tr>
+      <td><strong> {{firstname}} {{lastname}}</strong></td>
+      <td style="vertical-align: middle">{{position}}</td>
+      <td style="vertical-align: middle">{{age}}</td>
+      <td style="vertical-align: middle">{{birth_date}}</td>
+      <td style="vertical-align: middle">{{birth_place}} ({{birth_country}})</td>
+      <td style="vertical-align: middle">{{nationality}}</td>
+      <td style="vertical-align: middle">{{height}}</td>
+      <td style="vertical-align: middle">{{weight}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

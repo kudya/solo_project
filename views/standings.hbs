@@ -1,0 +1,41 @@
+<div class="bg-secondary text-white" id="homeRef">
+  <a class="text-white" href="/">Choose another team</a>
+</div>
+<div class="bg-secondary text-white" id="standingsButton">
+  <a class="text-white" href="/team/{{leagueId}}/{{teamId}}">Back to the Next Game</a>
+</div>
+<h1>2020/2021 Season</h1>
+<table class="table table-sm">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Teams</th>
+      <th scope="col">Games</th>
+      <th scope="col">W</th>
+      <th scope="col">D</th>
+      <th scope="col">L</th>
+      <th scope="col">GF</th>
+      <th scope="col">GA</th>
+      <th scope="col">GD</th>
+      <th scope="col">Pts</th>
+      <th scope="col">Last 5</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each teamsTable}}
+    <tr>
+      <th scope="row">{{rank}}</th>
+      <td><img width="40" height="40" style="vertical-align: middle" src="{{logo}}"><strong> {{teamName}}</strong></td>
+      <td style="vertical-align: middle">{{all.matchsPlayed}}</td>
+      <td style="vertical-align: middle">{{all.win}}</td>
+      <td style="vertical-align: middle">{{all.draw}}</td>
+      <td style="vertical-align: middle">{{all.lose}}</td>
+      <td style="vertical-align: middle">{{all.goalsFor}}</td>
+      <td style="vertical-align: middle">{{all.goalsAgainst}}</td>
+      <td style="vertical-align: middle">{{goalsDiff}}</td>
+      <td style="vertical-align: middle">{{points}}</td>
+      <td style="vertical-align: middle">{{forme}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
