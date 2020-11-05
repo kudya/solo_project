@@ -8,7 +8,6 @@ const ctx = document.getElementById('myChart');
 
 country?.addEventListener('submit', async (event) => {
   event.preventDefault();
-  console.log(event.target.countryForm.value);
   const resp = await fetch(`https://api-football-v1.p.rapidapi.com/v2/leagues/country/${event.target.countryForm.value}/2020`, {
     method: 'GET',
     headers: {
@@ -80,13 +79,6 @@ teamInfoButtons?.addEventListener('submit', async (event) => {
     });
     const result = await resp.json();
     const fixturePrediction = result.api.predictions[0];
-    console.log(fixturePrediction);
-    // const previousGames = result.api.fixtures;
-    // const refreshPage = await fetch('/hbs/previousGames.hbs');
-    // const template = await refreshPage.text();
-    // const render = Handlebars.compile(template);
-    // const htmlRefreshPage = render({ previousGames });
-    // teamInfoContainer.innerHTML = htmlRefreshPage;
 
     const myChart = new Chart(ctx, {
       type: 'bar',
@@ -214,18 +206,6 @@ teamInfoButtons?.addEventListener('submit', async (event) => {
       },
     ];
 
-    // const oddsArr = [];
-    // const obj = {};
-    // for (let i = 0; i < fixtureOdds.length; i += 1) {
-    //   console.log(fixtureOdds[i]);
-    //   obj.bookmaker = fixtureOdds[i].bookmaker_name;
-    //   obj.home = fixtureOdds[i].bets[0].values[0].odd;
-    //   obj.draw = fixtureOdds[i].bets[0].values[1].odd;
-    //   obj.away = fixtureOdds[i].bets[0].values[2].odd;
-    //   oddsArr.push(obj);
-    // }
-    // console.log('!!!!!!!!', oddsArr);
-
     const refreshPage = await fetch('/hbs/odds.hbs');
     const template = await refreshPage.text();
     const render = Handlebars.compile(template);
@@ -233,45 +213,3 @@ teamInfoButtons?.addEventListener('submit', async (event) => {
     teamInfoContainer.innerHTML = htmlRefreshPage;
   }
 });
-
-
-
-
-
-
-
-//-------------TEAM-------------
-// FIXTURES
-// GET X next fixtures by team
-// get("https://api-football-v1.p.rapidapi.com/v2/fixtures/team/{team_id}/next/{number}");
-
-// GET X last fixtures by team
-// get("https://api-football-v1.p.rapidapi.com/v2/fixtures/team/{team_id}/last/{number}");
-
-// PREDICTIONS
-// GET By fixture
-// get("https://api-football-v1.p.rapidapi.com/v2/predictions/{fixture_id}");
-
-// ODDS
-// Get all available odds from one {fixture_id}
-// get("https://api-football-v1.p.rapidapi.com/v2/odds/fixture/{fixture_id}");
-
-// STATISTICS
-// Get all statistics for a { team_id } in a { league_id }
-// get("https://api-football-v1.p.rapidapi.com/v2/statistics/{league_id}/{team_id}");
-
-// STANDINGS
-// Get all Standings from one { league_id }
-// get("https://api-football-v1.p.rapidapi.com/v2/leagueTable/{league_id}");
-
-//-------------PLAYERS-------------
-// SQUAD
-// GET By team and season
-// get("https://api-football-v1.p.rapidapi.com/v2/players/squad/{team_id}/{season}");
-
-// GET By team & season
-// get("https://api-football-v1.p.rapidapi.com/v2/players/team/{team_id}/{season}");
-
-// GET By id & season
-// get("https://api-football-v1.p.rapidapi.com/v2/players/player/{player_id}/{season}");
-

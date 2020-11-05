@@ -1,9 +1,7 @@
 const express = require('express');
 const axios = require('axios');
-const Chart = require('chart.js');
 
 const router = express.Router();
-
 
 router.get('/standings/:leagueId/:teamId', async (req, res) => {
   const { leagueId, teamId } = req.params;
@@ -33,7 +31,6 @@ router.get('/squad/:leagueId/:teamId', async (req, res) => {
       'useQueryString': true,
     },
   });
-  console.log(squad.data.api.players);
   const squadTable = squad.data.api.players;
   res.render('squad', { squadTable, leagueId, teamId });
 });
@@ -51,7 +48,6 @@ router.get('/:leagueId/:teamId', async (req, res) => {
     },
   });
   const nextGame = fixturesNext.data.api.fixtures[0];
-  console.log(nextGame);
   res.render('teamInfo', { nextGame, teamId, leagueId });
 });
 
