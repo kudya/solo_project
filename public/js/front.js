@@ -9,7 +9,7 @@ const ctx = document.getElementById('myChart');
 country?.addEventListener('submit', async (event) => {
   event.preventDefault();
   const chosenCountry = event.target.countryForm.value;
-  
+
   const resp = await fetch(`/choice/leagues/${chosenCountry}`);
   const { fnl, rpl } = await resp.json();
 
@@ -43,33 +43,22 @@ teamsContainer?.addEventListener('submit', (event) => {
 teamInfoButtons?.addEventListener('submit', async (event) => {
   event.preventDefault();
   if (event.target.teamInfoButtons.id === 'previousGame') {
-    const resp = await fetch(`https://api-football-v1.p.rapidapi.com/v2/fixtures/team/${event.target.teamInfoButtons.dataset.teamId}/last/3`, {
-      method: 'GET',
-      headers: {
-        'x-rapidapi-host': 'api-football-v1.p.rapidapi.com',
-        'x-rapidapi-key': '86bda08a13msh4860beadbbecc7fp12d63bjsn22a249dfe060',
-      },
-    });
-    const result = await resp.json();
-    const previousGames = result.api.fixtures;
+    const { teamId } = event.target.teamInfoButtons.dataset;
+
+    const resp = await fetch(`/matchButtons/previous/${teamId}`);
+    const { previousGamesArr } = await resp.json();
+
     const refreshPage = await fetch('/hbs/previousGames.hbs');
     const template = await refreshPage.text();
     const render = Handlebars.compile(template);
-    const htmlRefreshPage = render({ previousGames });
+    const htmlRefreshPage = render({ previousGamesArr });
     teamInfoContainer.innerHTML = htmlRefreshPage;
   }
   if (event.target.teamInfoButtons.id === 'predictions') {
-    const fixtureId = event.target.teamInfoButtons.dataset.fixtureId;
-    const resp = await fetch(`https://api-football-v1.p.rapidapi.com/v2/predictions/${fixtureId}`, {
-      method: 'GET',
-      headers: {
-        'x-rapidapi-host': 'api-football-v1.p.rapidapi.com',
-        'x-rapidapi-key': '86bda08a13msh4860beadbbecc7fp12d63bjsn22a249dfe060',
-      },
-    });
-    const result = await resp.json();
-    const fixturePrediction = result.api.predictions[0];
+    const { fixtureId } = event.target.teamInfoButtons.dataset;
 
+    const resp = await fetch(`/matchButtons/predictions/${fixtureId}`);
+    const { fixturePrediction } = await resp.json();
     const myChart = new Chart(ctx, {
       type: 'bar',
       data: {
@@ -152,16 +141,10 @@ teamInfoButtons?.addEventListener('submit', async (event) => {
     advice.innerHTML = `<h4>Prediction advice: "${fixturePrediction.advice}"<h4>`;
   }
   if (event.target.teamInfoButtons.id === 'odds') {
-    const fixtureId = event.target.teamInfoButtons.dataset.fixtureId;
-    const resp = await fetch(`https://api-football-v1.p.rapidapi.com/v2/odds/fixture/${fixtureId}`, {
-      method: 'GET',
-      headers: {
-        'x-rapidapi-host': 'api-football-v1.p.rapidapi.com',
-        'x-rapidapi-key': '86bda08a13msh4860beadbbecc7fp12d63bjsn22a249dfe060',
-      },
-    });
-    const result = await resp.json();
-    const fixtureOdds = result.api.odds[0].bookmakers;
+    const { fixtureId } = event.target.teamInfoButtons.dataset;
+
+    const resp = await fetch(`/matchButtons/odds/${fixtureId}`);
+    const { fixtureOdds } = await resp.json();
 
     const topFiveBookmakers = [
       {

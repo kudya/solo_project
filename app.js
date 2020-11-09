@@ -19,9 +19,11 @@ const indexRouter = require('./routes/index.js');
 const teamRouter = require('./routes/team.js');
 const squadRouter = require('./routes/squad.js');
 const userChoiceRouter = require('./routes/userChoice.js');
+const matchButtonsRouter = require('./routes/matchButtons.js');
 
 app.use('/', indexRouter);
 app.use('/team', teamRouter);
 app.use('/squad', squadRouter);
 app.use('/choice', userChoiceRouter);
+app.use('/matchButtons', matchButtonsRouter);
 app.listen(process.env.PORT);

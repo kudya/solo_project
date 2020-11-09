@@ -48,6 +48,7 @@ router.get('/:leagueId/:teamId', async (req, res) => {
     },
   });
   const nextGame = fixturesNext.data.api.fixtures[0];
+  nextGame.event_date = new Date(nextGame.event_date).toLocaleString();
   res.render('teamInfo', { nextGame, teamId, leagueId });
 });
 
