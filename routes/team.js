@@ -11,12 +11,12 @@ router.get('/standings/:leagueId/:teamId', async (req, res) => {
     headers: {
       'content-type': 'application/octet-stream',
       'x-rapidapi-host': 'api-football-v1.p.rapidapi.com',
-      'x-rapidapi-key': '86bda08a13msh4860beadbbecc7fp12d63bjsn22a249dfe060',
+      'x-rapidapi-key': process.env.API_TOKEN,
       'useQueryString': true,
     },
   });
   const teamsTable = standings.data.api.standings[0];
-  res.render('standings', { teamsTable, leagueId, teamId })
+  res.render('standings', { teamsTable, leagueId, teamId });
 });
 
 router.get('/squad/:leagueId/:teamId', async (req, res) => {
@@ -27,7 +27,7 @@ router.get('/squad/:leagueId/:teamId', async (req, res) => {
     headers: {
       'content-type': 'application/octet-stream',
       'x-rapidapi-host': 'api-football-v1.p.rapidapi.com',
-      'x-rapidapi-key': '86bda08a13msh4860beadbbecc7fp12d63bjsn22a249dfe060',
+      'x-rapidapi-key': process.env.API_TOKEN,
       'useQueryString': true,
     },
   });
@@ -43,7 +43,7 @@ router.get('/:leagueId/:teamId', async (req, res) => {
     headers: {
       'content-type': 'application/octet-stream',
       'x-rapidapi-host': 'api-football-v1.p.rapidapi.com',
-      'x-rapidapi-key': '86bda08a13msh4860beadbbecc7fp12d63bjsn22a249dfe060',
+      'x-rapidapi-key': process.env.API_TOKEN,
       'useQueryString': true,
     },
   });

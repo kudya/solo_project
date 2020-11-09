@@ -8,16 +8,10 @@ const ctx = document.getElementById('myChart');
 
 country?.addEventListener('submit', async (event) => {
   event.preventDefault();
-  const resp = await fetch(`https://api-football-v1.p.rapidapi.com/v2/leagues/country/${event.target.countryForm.value}/2020`, {
-    method: 'GET',
-    headers: {
-      'x-rapidapi-host': 'api-football-v1.p.rapidapi.com',
-      'x-rapidapi-key': '86bda08a13msh4860beadbbecc7fp12d63bjsn22a249dfe060',
-    },
-  });
-  const result = await resp.json();
-  const fnl = result.api.leagues[0];
-  const rpl = result.api.leagues[1];
+  const chosenCountry = event.target.countryForm.value;
+  
+  const resp = await fetch(`/choice/leagues/${chosenCountry}`);
+  const { fnl, rpl } = await resp.json();
 
   const refreshPage = await fetch('/hbs/league.hbs');
   const template = await refreshPage.text();
@@ -28,16 +22,12 @@ country?.addEventListener('submit', async (event) => {
 
 leagueContainer?.addEventListener('submit', async (event) => {
   event.preventDefault();
-  const resp = await fetch(`https://api-football-v1.p.rapidapi.com/v2/teams/league/${event.target.leagueForm.dataset.leagueId}`, {
-    method: 'GET',
-    headers: {
-      'x-rapidapi-host': 'api-football-v1.p.rapidapi.com',
-      'x-rapidapi-key': '86bda08a13msh4860beadbbecc7fp12d63bjsn22a249dfe060',
-    },
-  });
-  const result = await resp.json();
-  const teamsArr = result.api.teams;
-  const leagueId = event.target.leagueForm.dataset.leagueId;
+  const chosenLeague = event.target.leagueForm.dataset.leagueId;
+
+  const resp = await fetch(`/choice/teams/${chosenLeague}`);
+  const { teamsArr } = await resp.json();
+  const { leagueId } = event.target.leagueForm.dataset;
+
   const refreshPage = await fetch('/hbs/teams.hbs');
   const template = await refreshPage.text();
   const render = Handlebars.compile(template);
